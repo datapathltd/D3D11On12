@@ -1,0 +1,4 @@
+[submodule "d3d12translationlayer"]
+	path = d3d12translationlayer
+	url = https://github.com/datapathltd/D3D12TranslationLayer.git
+	branch = datapath_investigations
