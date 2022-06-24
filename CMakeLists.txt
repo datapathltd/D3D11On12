@@ -6,4 +6,5 @@ project(d3d11on12)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_subdirectory(d3d12translationlayer)
 add_subdirectory(src)

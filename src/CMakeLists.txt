@@ -15,12 +15,15 @@ if (CMAKE_VERSION VERSION_GREATER 3.16)
 	target_precompile_headers(d3d11on12 PRIVATE ../include/pch.hpp)
 endif()
 
+
+#[[
 FetchContent_Declare(
     d3d12translationlayer
     GIT_REPOSITORY https://github.com/microsoft/D3D12TranslationLayer.git
     GIT_TAG        bea9842b008b25283e43955fbf8cf6b2e8755352
 )
 FetchContent_MakeAvailable(d3d12translationlayer)
+]]
 
 target_link_libraries(d3d11on12 d3d12translationlayer_wdk)
 target_include_directories(d3d11on12
@@ -30,3 +33,21 @@ target_include_directories(d3d11on12
     PRIVATE ./)
 source_group(Inlines FILES ${INL})
 source_group("Header Files\\External" FILES ${EXTERNAL_INC})
+
+
+
+
+include(GNUInstallDirs)
+
+
+get_target_property(WinPixEventRuntime_dll_path WinPixEventRuntime IMPORTED_LOCATION)
+
+install(
+   TARGETS
+      d3d11on12
+   RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
+install(
+   FILES
+      ${WinPixEventRuntime_dll_path}
+   DESTINATION
+      ${CMAKE_INSTALL_FULL_BINDIR})
